@@ -1783,6 +1783,12 @@
     githubId = 199180;
     name = "Claes Wallin";
   };
+  claymager = {
+    email = "jmageriii@gmail.com";
+    github = "claymager";
+    githubId = 8852150;
+    name = "John Mager";
+  };
   cleverca22 = {
     email = "cleverca22@gmail.com";
     github = "cleverca22";
