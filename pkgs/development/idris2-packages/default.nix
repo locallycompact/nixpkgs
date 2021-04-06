@@ -9,6 +9,7 @@ in
 rec {
   packages = rec {
     comonad = pkgs.callPackage ./comonad.nix { inherit buildIdris; };
+    elab-util = pkgs.callPackage ./elab-util.nix { inherit buildIdris; };
   };
 
   withPkgs = fn: withPackages (fn packages);
