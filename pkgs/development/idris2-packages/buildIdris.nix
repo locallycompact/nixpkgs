@@ -3,11 +3,11 @@
 , name
 , src
 , idris2
-, idrisLibraries
 , symlinkJoin
 , makeWrapper
 , withPackages
-, extraBuildInputs
+, idrisLibraries ? []
+, extraBuildInputs ? []
 , ipkgName ? name + ".ipkg"
 }:
 let
@@ -30,14 +30,11 @@ let
   installLibrary =
     let
       thisLib = build.overrideAttrs (oldAttrs: {
-        buildPhase = "";
-
         installPhase = ''
           mkdir -p $out/${idris2.name}
           export IDRIS2_PREFIX=$out/
           idris2 --install ${ipkgName}
         '';
-
       });
     in
     symlinkJoin {

@@ -1,19 +1,20 @@
 { pkgs, lib, fetchFromGitHub, stdenv, idris2 }:
 let
   withPackages = pkgs.callPackage ./with-packages.nix { inherit idris2; };
-  buildIdris = { name, src, idrisLibraries ? [ ], extraBuildInputs ? [ ] }:
-    pkgs.callPackage ./buildIdris.nix
-      { inherit src name withPackages extraBuildInputs idrisLibraries idris2; };
-  mythingy = file: args: pkgs.callPackage file (lib.recursiveUpdate { inherit buildIdris; } args);
+
+  buildIdris = args: pkgs.callPackage ./buildIdris.nix ({ inherit idris2 withPackages; } // args);
+
+  callPackage = file: args: pkgs.callPackage file (lib.recursiveUpdate { inherit buildIdris; } args);
 
 in
 rec {
   packages = rec {
-    comonad = pkgs.callPackage ./comonad.nix { inherit buildIdris; };
-    elab-util = pkgs.callPackage ./elab-util.nix { inherit buildIdris; };
-    readline = pkgs.callPackage ./readline.nix { inherit buildIdris; };
-    with-ffi = pkgs.callPackage ./with-ffi.nix { inherit buildIdris; };
-    comonado = mythingy ./comonad.nix { };
+    comonad = callPackage ./comonad.nix { };
+    elab-util = callPackage ./elab-util.nix { };
+    sop = callPackage ./sop.nix { inherit elab-util; };
+
+    readline = callPackage ./readline.nix { };
+    with-ffi = callPackage ./with-ffi.nix { };
   };
 
   withPkgs = fn: withPackages (fn packages);
