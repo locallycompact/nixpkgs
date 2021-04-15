@@ -10498,8 +10498,6 @@ in
   idris = idrisPackages.with-packages [ idrisPackages.base ] ;
 
   idris2 = callPackage ../development/compilers/idris2 { };
-  idris2-local = idris2.overrideAttrs (a: { src = /home/john/lab/reference/Idris2; });
-  idris2-test = idris2-local.overrideAttrs (a: { doCheck = true; });
 
   intel-graphics-compiler = callPackage ../development/compilers/intel-graphics-compiler { };
 
