@@ -11,6 +11,7 @@ rec {
   packages = rec {
     comonad = callPackage ./comonad.nix { };
     elab-util = callPackage ./elab-util.nix { };
+    idrall = callPackage ./idrall.nix { };
     sdl = callPackage ./sdl.nix { };
     sop = callPackage ./sop.nix { inherit elab-util; };
 
