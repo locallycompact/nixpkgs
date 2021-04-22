@@ -13,6 +13,7 @@ rec {
     elab-util = callPackage ./elab-util.nix { };
     idrall = callPackage ./idrall.nix { };
     sdl = callPackage ./sdl.nix { };
+    idris-ct = callPackage ./idris-ct.nix {};
     sop = callPackage ./sop.nix { inherit elab-util; };
 
     readline = callPackage ./readline.nix { };
