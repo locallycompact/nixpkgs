@@ -20,6 +20,6 @@ rec {
     with-ffi = callPackage ./with-ffi.nix { };
   };
 
-  callPackage;
+  callPackage' = callPackage;
   withPkgs = fn: withPackages (fn packages);
 }
