@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
   version = "4.2beta4";
 
   src = fetchurl {
-    url = "https://downloads.bitwig.com/stable/${version}/${pname}-${version}.deb";
+    url = "https://downloads.bitwig.com/stable/4.2/${pname}-${version}.deb";
     sha256 = "sha256-Q4YYdMUd/T8tGGcakhoLdHvWsHwOq7LgIb77sr2OWuJ=";
   };
 
